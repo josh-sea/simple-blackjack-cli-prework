@@ -40,7 +40,6 @@ def hit?(card_total)
   user_input = get_user_input
   if user_input == "h"
     new_card = deal_card
-    puts "you hit #{new_card}"
     return card_total = card_total + new_card
   elsif user_input == "s"
     return card_total
