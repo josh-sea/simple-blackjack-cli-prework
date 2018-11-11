@@ -7,9 +7,10 @@ def deal_card
   card = rand(1..11)
 end
 
-def display_card_total(card)
+def display_card_total(card_total)
   # code #display_card_total here
-  puts card
+  puts "Your cards add up to #{card_total}"
+  return(card_total)
 end
 
 def prompt_user
@@ -19,25 +20,32 @@ end
 
 def get_user_input
   # code #get_user_input here
-  user_input = gets.chomp
+  return user_input = gets.chomp
 end
 
-def end_game
+def end_game(card_total)
   # code #end_game here
+  puts "Sorry, you hit #{card_total}. Thanks for playing!"
 end
 
 def initial_round
   # code #initial_round here
+  card_total = deal_card + deal_card
+  display_card_total(card_total)
+  return card_total
 end
 
-def hit?
+def hit?(card_total)
   # code hit? here
   prompt_user
-  get_user_input
+  user_input = get_user_input
   if user_input == "h"
-    card
+    new_card = deal_card
+    puts "you hit #{new_card}"
+    return card_total = card_total + new_card
   elsif user_input == "s"
-  end 
+    return card_total
+  end
 end
 
 def invalid_command
@@ -50,5 +58,12 @@ end
 
 def runner
   # code runner here
+  welcome
+  card_total = initial_round
+  until card_total >= 21 do
+    display_card_total(card_total)
+    hit?(card_total)
+  end
+  end_game(card_total)
 end
     
